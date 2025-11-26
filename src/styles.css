@@ -1,0 +1,615 @@
+:root {
+  --bg-main: #f3f5f9;
+  --bg-card: #ffffff;
+  --bg-toolbar: #ffffff;
+  --border-soft: #e0e4ee;
+  --text-main: #1b2430;
+  --text-soft: #6b7280;
+  --accent: #00a3e0; /* StenTech-ish blue */
+  --accent-soft: rgba(0, 163, 224, 0.15);
+  --shadow-soft: 0 6px 20px rgba(15, 23, 42, 0.08);
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* APP LAYOUT */
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* HEADER */
+
+header.app-header,
+.app-header {
+  height: 56px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f172a;
+  color: #e5e7eb;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
+  z-index: 10;
+}
+
+.app-header-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.app-header-title h1 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.app-header-subtitle {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 320px;
+  min-width: 280px;
+  max-width: 360px;
+  border-right: 1px solid var(--border-soft);
+  background: #f8fafc;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+/* PANELS IN SIDEBAR */
+
+.panel {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 12px 12px 14px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.panel h2 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.panel-subtitle {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+/* UPLOAD PANEL */
+
+.drop-zone {
+  border-radius: var(--radius-lg);
+  border: 1px dashed #cbd5f5;
+  padding: 12px;
+  background: #f9fbff;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.drop-zone--active {
+  border-color: var(--accent);
+  background: #f0f9ff;
+}
+
+.drop-zone-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.drop-icon {
+  font-size: 20px;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+/* LAYER LIST */
+
+.layer-list {
+  margin-top: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+  font-size: 12px;
+}
+
+.layer-item:hover {
+  background: #f3f4ff;
+}
+
+.layer-item--selected {
+  background: #e0f2ff;
+}
+
+.layer-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.layer-item-name {
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.layer-item-meta {
+  font-size: 10px;
+  color: var(--text-soft);
+}
+
+.layer-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.layer-toggle {
+  width: 16px;
+  height: 16px;
+}
+
+/* AI PANEL (now more like "Display") */
+
+.display-block {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.display-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ai-example-label {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-bottom: 2px;
+}
+
+.ai-example-body {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.display-color-code {
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+/* VIEWER SECTION (RIGHT) */
+
+.viewer-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px 14px 14px;
+}
+
+/* VIEWER PANE */
+
+.viewer-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* EMPTY STATE */
+
+.viewer-empty {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border-soft);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--text-soft);
+}
+
+.viewer-empty--full {
+  height: 100%;
+}
+
+.viewer-empty h2 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-main);
+}
+
+.viewer-bullets {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+/* FULL VIEWER AREA */
+
+.viewer-full {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+/* TOOLBAR */
+
+.viewer-toolbar {
+  height: 56px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg-toolbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.viewer-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.viewer-file-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.viewer-side-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.side-button {
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-soft);
+  background: #f9fafb;
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+  color: var(--text-soft);
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.side-button--active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(0, 163, 224, 0.12);
+}
+
+.viewer-toolbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* ZOOM CONTROL */
+
+.zoom-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.zoom-label {
+  color: var(--text-soft);
+}
+
+.zoom-control input[type='range'] {
+  width: 140px;
+}
+
+.zoom-value {
+  min-width: 46px;
+  text-align: right;
+  color: var(--text-soft);
+}
+
+.zoom-reset {
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-soft);
+  background: #f9fafb;
+  font-size: 11px;
+  padding: 3px 10px;
+  cursor: pointer;
+  color: var(--text-soft);
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.zoom-reset:hover {
+  border-color: var(--accent);
+  background: #eff6ff;
+}
+
+/* VIEWER SVG CONTAINER */
+
+.viewer-svg-container-wide {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+  background: #f3f4f6;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 12px;
+  cursor: grab;
+  min-height: 0;
+}
+
+.viewer-svg-container-wide--panning {
+  cursor: grabbing;
+}
+
+.viewer-svg-inner-wide {
+  display: inline-block;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+/* PLACEHOLDER */
+
+.viewer-placeholder {
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.viewer-placeholder--inline {
+  padding: 8px 14px;
+}
+
+/* GENERAL BUTTON RESET */
+
+button {
+  font-family: var(--font-main);
+}
+
+/* SCROLLBARS (optional, subtle) */
+
+.sidebar::-webkit-scrollbar,
+.viewer-svg-container-wide::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.viewer-svg-container-wide::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.viewer-svg-container-wide::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.6);
+  border-radius: 999px;
+}
+
+/* ----------------------------------------- */
+/* STENTELLIGENCE CHAT UI */
+/* ----------------------------------------- */
+
+.sti-chat-toggle {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.15s ease;
+  z-index: 9999;
+}
+
+.sti-chat-toggle:hover {
+  transform: scale(1.07);
+}
+
+.sti-chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 22px;
+  width: 360px;
+  height: 460px;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.sti-chat-header {
+  background: var(--accent);
+  padding: 12px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.sti-chat-close {
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.sti-chat-body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+.sti-msg {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.sti-user {
+  background: var(--accent);
+  color: white;
+  margin-left: auto;
+}
+
+.sti-ai {
+  background: #e5e7eb;
+  color: #111;
+  margin-right: auto;
+}
+
+/* Thinking / typing indicator */
+.sti-thinking {
+  display: flex;
+  gap: 4px;
+  padding: 8px;
+}
+
+.sti-thinking .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #999;
+  animation: stiPulse 1.4s infinite;
+}
+
+.sti-thinking .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.sti-thinking .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes stiPulse {
+  0% { opacity: 0.3; }
+  40% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+.sti-chat-input-area {
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+  border-top: 1px solid #ddd;
+  background: white;
+}
+
+.sti-chat-input-area input {
+  flex: 1;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.sti-chat-input-area button {
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-size: 18px;
+  padding: 0 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+/* Floating labeled Stentelligence button */
+.sti-chat-toggle-label {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  transition: transform 0.15s ease, background 0.2s ease;
+  z-index: 9999;
+}
+
+.sti-chat-toggle-label:hover {
+  transform: scale(1.05);
+  background: #004aad; /* slightly darker */
+}
